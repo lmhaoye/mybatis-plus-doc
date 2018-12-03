@@ -6,13 +6,22 @@
 
 
 ```xml
+<!-- maven依赖 -->
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-extension</artifactId>
+        <version>maven最新版本</version>
+    </dependency>
+
 <!-- spring xml 方式 -->
-<plugins>
-    <plugin interceptor="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
-        <property name="sqlParser" ref="自定义解析类、可以没有" />
-        <property name="dialectClazz" value="自定义方言类、可以没有" />
-    </plugin>
-</plugins>
+    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="plugins">
+            <list>
+                <bean class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"/>
+            </list>
+        </property>
+    </bean>
 ```
 
 ```java
